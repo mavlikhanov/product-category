@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Authorization\LoginController;
+use App\Http\Controllers\Authorization\LogoutController;
+use App\Http\Controllers\Authorization\RegistrationController;
+use App\Http\Controllers\Authorization\TokenRefreshController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'authorization'], function () {
+    Route::post('registration', [RegistrationController::class, 'register']);
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('token_refresh', [TokenRefreshController::class, 'tokenRefresh']);
+    Route::middleware('auth:api')->group(function () {
+        Route::post('test', function () {
+            return 'test';
+        });
+        Route::post('logout', [LogoutController::class, 'logout']);
+    });
 });
