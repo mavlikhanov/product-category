@@ -4,6 +4,7 @@ use App\Http\Controllers\Authorization\LoginController;
 use App\Http\Controllers\Authorization\LogoutController;
 use App\Http\Controllers\Authorization\RegistrationController;
 use App\Http\Controllers\Authorization\TokenRefreshController;
+use App\Http\Controllers\Catalog\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'authorization'], function () {
@@ -16,4 +17,8 @@ Route::group(['prefix' => 'authorization'], function () {
         });
         Route::post('logout', [LogoutController::class, 'logout']);
     });
+});
+
+Route::group(['prefix' => 'catalog', 'middleware' => 'auth:api'], function () {
+    Route::apiResource('category', CategoryController::class);
 });

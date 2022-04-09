@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Authorization;
 
 use App\Api\Data\UserInterface;
+use App\Http\Requests\Request;
 
 class RegistrationRequest extends Request
 {
@@ -15,11 +16,6 @@ class RegistrationRequest extends Request
             UserInterface::PASSWORD               => 'required|min:5|max:50|confirmed',
             UserInterface::PASSWORD_CONFIRMATION  => 'required|min:5|max:50'
         ];
-    }
-
-    public function messages(): array
-    {
-        return parent::messages();
     }
 
     public function attributes(): array

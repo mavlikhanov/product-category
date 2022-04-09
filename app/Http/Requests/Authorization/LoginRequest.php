@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Authorization;
 
 use App\Api\Data\UserInterface;
+use App\Http\Requests\Request;
 
 class LoginRequest extends Request
 {
@@ -13,11 +14,6 @@ class LoginRequest extends Request
             UserInterface::EMAIL    => 'required',
             UserInterface::PASSWORD => 'required',
         ];
-    }
-
-    public function messages(): array
-    {
-        return parent::messages();
     }
 
     public function attributes(): array

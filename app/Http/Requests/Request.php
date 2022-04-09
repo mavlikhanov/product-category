@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Http\Requests\Authorization;
+namespace App\Http\Requests;
 
 use App\Api\Data\HTTP_STATUS;
 use Illuminate\Contracts\Validation\Validator;
