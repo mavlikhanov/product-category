@@ -1,37 +1,37 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Catalog\Category;
+namespace App\Service\Catalog\Product;
 
 use App\Service\Catalog\AbstractBaseManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryManager extends AbstractBaseManager
+class ProductManager extends AbstractBaseManager
 {
-    private $categoryProcessorPool;
+    private $productProcessorPool;
     private $actionName;
     private $request;
     private $id;
-
-    public function __construct(CategoryProcessorPool $categoryProcessorPool)
+    
+    public function __construct(ProductProcessorPool $productProcessorPool)
     {
-        $this->categoryProcessorPool = $categoryProcessorPool;
+        $this->productProcessorPool = $productProcessorPool;
     }
 
-    public function setActionName(string $actionName): CategoryManager
+    public function setActionName(string $actionName): ProductManager
     {
         $this->actionName = $actionName;
         return $this;
     }
 
-    public function setRequest(Request $request): CategoryManager
+    public function setRequest(Request $request): ProductManager
     {
         $this->request = $request;
         return $this;
     }
 
-    public function setEntityId(int $id): CategoryManager
+    public function setEntityId(int $id): ProductManager
     {
         $this->id = $id;
         return $this;
@@ -39,7 +39,7 @@ class CategoryManager extends AbstractBaseManager
 
     protected function process(): ?JsonResource
     {
-        foreach ($this->categoryProcessorPool->getProcessors() as $processor) {
+        foreach ($this->productProcessorPool->getProcessors() as $processor) {
             $processor->setActionName($this->actionName);
             if ($this->request) {
                 $processor->setRequest($this->request);

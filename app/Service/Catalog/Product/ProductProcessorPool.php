@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Catalog\Category;
+namespace App\Service\Catalog\Product;
 
-use App\Api\Data\Catalog\CategoryProcessorInterface;
+use App\Api\Data\Catalog\ProductProcessorInterface;
 use App\Api\Data\ProcessorPoolInterface;
 
-class CategoryProcessorPool implements ProcessorPoolInterface
+class ProductProcessorPool implements ProcessorPoolInterface
 {
     private $parserDi;
 
@@ -16,7 +16,7 @@ class CategoryProcessorPool implements ProcessorPoolInterface
     }
 
     /**
-     * @return CategoryProcessorInterface[]
+     * @return ProductProcessorInterface[]
      */
     public function getProcessors(): array
     {

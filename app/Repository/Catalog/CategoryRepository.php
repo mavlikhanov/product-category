@@ -5,7 +5,6 @@ namespace App\Repository\Catalog;
 
 use App\Models\Catalog\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CategoryRepository
 {
@@ -21,6 +20,15 @@ class CategoryRepository
             throw new \Exception("Category with id #{$id} doest not exist");
         }
         return $category;
+    }
+
+    public function getByIds(array $ids)
+    {
+        $categories = Category::find($ids);
+        if (!$categories || $categories->isEmpty()) {
+            throw new \Exception(sprintf("Category with ids #%s doest not exist", implode(',', $ids)));
+        }
+        return $categories;
     }
 
     public function update(Category $category, array $data): Category

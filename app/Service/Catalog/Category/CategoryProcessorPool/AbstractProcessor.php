@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Catalog\Category\CategoryProcessorPool;
 
 use App\Api\Data\Catalog\CategoryProcessorInterface;
+use App\Api\Data\CategoryInterface;
 use App\Repository\Catalog\CategoryRepository;
 use Illuminate\Http\Request;
 
@@ -50,8 +51,8 @@ abstract class AbstractProcessor implements CategoryProcessorInterface
     protected function getPreparedData(): array
     {
         return [
-            'title' => $this->request->title,
-            'description' => $this->request->description ?? null,
+            CategoryInterface::TITLE       => $this->request->title,
+            CategoryInterface::DESCRIPTION => $this->request->description ?? null,
         ];
     }
 }

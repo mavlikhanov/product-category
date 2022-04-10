@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace App\Service\Catalog\Category;
 
+use App\Api\Data\ParserDiInterface;
 use App\Service\Catalog\Category\CategoryProcessorPool\CategoryIndexProcessor;
 use App\Service\Catalog\Category\CategoryProcessorPool\CategoryRemoverProcessor;
 use App\Service\Catalog\Category\CategoryProcessorPool\CategorySaverProcessor;
 use App\Service\Catalog\Category\CategoryProcessorPool\CategoryUpdaterProcessor;
 
-class ParserDi
+class ParserDi implements ParserDiInterface
 {
     private $categorySaverProcessor;
     private $categoryUpdaterProcessor;
